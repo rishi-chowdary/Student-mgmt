@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="mb-4">Edit Student</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" name="name" class="form-control" value="{{ student.name }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" name="email" class="form-control" value="{{ student.email }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="course" class="form-label">Course Name</label>
+        <input type="text" name="course" class="form-control" value="{{ student.course }}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Student</button>
+    <a href="{{ url_for('home') }}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}
