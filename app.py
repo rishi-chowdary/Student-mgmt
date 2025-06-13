@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Use DATABASE_URL from environment
+# Database config
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -57,7 +57,7 @@ def delete_student(id):
     flash('Student deleted successfully!', 'danger')
     return redirect(url_for('home'))
 
-# Ensure tables are created when site loads
-@app.before_first_request
-def create_tables():
-    db.create_all()
+# ✅ This runs when app starts on Render (not locally)
+if __name__ != '__main__':
+    with app.app_context():
+        db.create_all()
